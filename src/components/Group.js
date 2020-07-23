@@ -21,7 +21,7 @@ const Group = ({ group, children }) => (
     <Title>{group.title}</Title>
     <Droppable droppableId={group.id}>
       {provided => (
-        <TagList innerRef={provided.innerRef} {...provided.droppableProps}>
+        <TagList ref={provided.innerRef} {...provided.droppableProps}>
           {children}
           {provided.placeholder}
         </TagList>

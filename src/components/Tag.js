@@ -13,7 +13,7 @@ const Tag = ({ tag, index }) => {
   return (
     <Draggable draggableId={tag.id} index={index}>
       {provided => (
-        <Container innerRef={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+        <Container ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
           {tag.content}
         </Container>
       )}
