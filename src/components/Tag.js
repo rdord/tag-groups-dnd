@@ -7,6 +7,7 @@ const Container = styled.div`
   margin-bottom: 8px;
   border: 1px solid lightgray;
   border-radius: 2px;
+  background-color: white;
 `;
 
 const Tag = ({ tag, index }) => {

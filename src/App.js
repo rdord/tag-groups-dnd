@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { tagsData, groupsData, groupOrderData } from './data';
+import data from './data';
 import Group from './components/Group';
 import Tag from './components/Tag';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 const App = () => {
-  const handleOnDragEnd = () => {};
+  const [groups, setGroups] = useState(data.groups);
 
-  const renderGroups = groupOrderData.map(groupsId => {
-    const group = groupsData[groupsId];
-    const tags = group.tagIds.map(tagIds => tagsData[tagIds]);
+  const handleOnDragEnd = ({ draggableId, source, destination }) => {
+    if (!destination) {
+      return;
+    }
+
+    if (destination.droppableId === source.droppableId && destination.index === source.index) {
+      return;
+    }
+
+    const group = groups[destination.droppableId];
+    const newTagIds = [...group.tagIds];
+    newTagIds.splice(source.index, 1);
+    newTagIds.splice(destination.index, 0, draggableId);
+
+    const newGroup = { ...group, tagIds: newTagIds };
+    setGroups(prevState => ({ ...prevState, [newGroup.id]: newGroup }));
+  };
+
+  const renderGroups = data.groupOrder.map(groupsId => {
+    const group = groups[groupsId];
+    const tags = group.tagIds.map(tagIds => data.tags[tagIds]);
 
     return (
       <Group key={group.id} group={group}>
