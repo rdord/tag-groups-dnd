@@ -18,12 +18,10 @@ const App = () => {
     }
 
     const group = groups[destination.droppableId];
-    const newTagIds = [...group.tagIds];
-    newTagIds.splice(source.index, 1);
-    newTagIds.splice(destination.index, 0, draggableId);
+    group.tagIds.splice(source.index, 1);
+    group.tagIds.splice(destination.index, 0, draggableId);
 
-    const newGroup = { ...group, tagIds: newTagIds };
-    setGroups(prevState => ({ ...prevState, [newGroup.id]: newGroup }));
+    setGroups(prevState => ({ ...prevState, [group.id]: group }));
   };
 
   const renderGroups = data.groupOrder.map(groupsId => {
