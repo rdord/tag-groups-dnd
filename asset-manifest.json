@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/tag-groups-dnd/static/css/main.27fd15f6.chunk.css",
+    "main.js": "/tag-groups-dnd/static/js/main.30d84ba5.chunk.js",
+    "main.js.map": "/tag-groups-dnd/static/js/main.30d84ba5.chunk.js.map",
+    "runtime-main.js": "/tag-groups-dnd/static/js/runtime-main.ebbae526.js",
+    "runtime-main.js.map": "/tag-groups-dnd/static/js/runtime-main.ebbae526.js.map",
+    "static/js/2.e3bdbb97.chunk.js": "/tag-groups-dnd/static/js/2.e3bdbb97.chunk.js",
+    "static/js/2.e3bdbb97.chunk.js.map": "/tag-groups-dnd/static/js/2.e3bdbb97.chunk.js.map",
+    "index.html": "/tag-groups-dnd/index.html",
+    "precache-manifest.0041e2c19242c104838c79252b7fe7d4.js": "/tag-groups-dnd/precache-manifest.0041e2c19242c104838c79252b7fe7d4.js",
+    "service-worker.js": "/tag-groups-dnd/service-worker.js",
+    "static/css/main.27fd15f6.chunk.css.map": "/tag-groups-dnd/static/css/main.27fd15f6.chunk.css.map",
+    "static/js/2.e3bdbb97.chunk.js.LICENSE.txt": "/tag-groups-dnd/static/js/2.e3bdbb97.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ebbae526.js",
+    "static/js/2.e3bdbb97.chunk.js",
+    "static/css/main.27fd15f6.chunk.css",
+    "static/js/main.30d84ba5.chunk.js"
+  ]
+}
