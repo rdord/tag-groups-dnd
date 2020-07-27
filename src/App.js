@@ -3,7 +3,12 @@ import './App.css';
 import data from './data';
 import Group from './components/Group';
 import Tag from './components/Tag';
+import styled from 'styled-components';
 import { DragDropContext } from 'react-beautiful-dnd';
+
+const Container = styled.div`
+  /* display: flex; */
+`;
 
 const App = () => {
   const [groups, setGroups] = useState(data.groups);
@@ -17,11 +22,13 @@ const App = () => {
       return;
     }
 
-    const group = groups[destination.droppableId];
-    group.tagIds.splice(source.index, 1);
-    group.tagIds.splice(destination.index, 0, draggableId);
+    const startGroup = groups[source.droppableId];
+    const finishGroup = groups[destination.droppableId];
 
-    setGroups(prevState => ({ ...prevState, [group.id]: group }));
+    startGroup.tagIds.splice(source.index, 1);
+    finishGroup.tagIds.splice(destination.index, 0, draggableId);
+
+    setGroups(prevState => ({ ...prevState, [startGroup.id]: startGroup, [finishGroup.id]: finishGroup }));
   };
 
   const renderGroups = data.groupOrder.map(groupsId => {
@@ -37,7 +44,11 @@ const App = () => {
     );
   });
 
-  return <DragDropContext onDragEnd={handleOnDragEnd}>{renderGroups}</DragDropContext>;
+  return (
+    <DragDropContext onDragEnd={handleOnDragEnd}>
+      <Container>{renderGroups} </Container>
+    </DragDropContext>
+  );
 };
 
 export default App;

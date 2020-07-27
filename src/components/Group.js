@@ -6,6 +6,7 @@ const Container = styled.div`
   margin: 8px;
   border: 1px solid lightgray;
   border-radius: 2px;
+  width: 100$;
 `;
 
 const Title = styled.h1`
@@ -14,14 +15,16 @@ const Title = styled.h1`
 
 const TagList = styled.div`
   padding: 8px;
+  background-color: ${({ isDraggingOver }) => (isDraggingOver ? '#FCF7C1' : 'white')};
+  min-height: 64px;
+  display: flex;
 `;
 
 const Group = ({ group, children }) => (
   <Container>
-    <Title>{group.title}</Title>
-    <Droppable droppableId={group.id}>
-      {provided => (
-        <TagList ref={provided.innerRef} {...provided.droppableProps}>
+    <Droppable droppableId={group.id} direction='horizontal'>
+      {(provided, snapshot) => (
+        <TagList ref={provided.innerRef} {...provided.droppableProps} isDraggingOver={snapshot.isDraggingOver}>
           {children}
           {provided.placeholder}
         </TagList>

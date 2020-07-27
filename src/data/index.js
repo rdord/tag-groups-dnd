@@ -10,7 +10,17 @@ export default {
       id: 'group-1',
       title: 'Group 1',
       tagIds: ['tag-1', 'tag-2', 'tag-3', 'tag-4']
+    },
+    'group-2': {
+      id: 'group-2',
+      title: 'Group 2',
+      tagIds: []
+    },
+    'group-3': {
+      id: 'group-3',
+      title: 'Group 3',
+      tagIds: []
     }
   },
-  groupOrder: ['group-1']
+  groupOrder: ['group-1', 'group-2', 'group-3']
 };
