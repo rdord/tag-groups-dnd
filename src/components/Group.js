@@ -16,13 +16,6 @@ const Content = styled.div`
   width: 100%;
 `;
 
-const Title = styled.h1`
-  padding: 14px 0 1px 17px;
-  margin: 0;
-  font-size: 17px;
-  font-weight: 400;
-`;
-
 const TagList = styled.div`
   padding: 8px;
   background-color: ${({ isDraggingOver }) => (isDraggingOver ? '#FCF7C1' : 'inherit')};

@@ -8,17 +8,14 @@ export default {
   groups: {
     'group-1': {
       id: 'group-1',
-      title: 'Group 1',
       tagIds: ['tag-1', 'tag-2']
     },
     'group-2': {
       id: 'group-2',
-      title: 'Group 2',
       tagIds: ['tag-3']
     },
     'group-3': {
       id: 'group-3',
-      title: 'Group 3',
       tagIds: ['tag-4']
     }
   },

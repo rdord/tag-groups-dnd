@@ -3,12 +3,7 @@ import './App.css';
 import data from './data';
 import Group from './components/Group';
 import Tag from './components/Tag';
-import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-
-const Container = styled.div`
-  /* display: flex; */
-`;
 
 const App = () => {
   const [groups, setGroups] = useState(data.groups);
@@ -59,10 +54,10 @@ const App = () => {
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId='all-groups' type='group'>
         {provided => (
-          <Container ref={provided.innerRef} {...provided.droppableProps}>
+          <div ref={provided.innerRef} {...provided.droppableProps}>
             {renderGroups}
             {provided.placeholder}
-          </Container>
+          </div>
         )}
       </Droppable>
     </DragDropContext>

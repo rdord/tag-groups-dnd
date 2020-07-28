@@ -5,10 +5,6 @@ import Chip from '@material-ui/core/Chip';
 
 const Container = styled.div`
   padding: 8px;
-
-  /* &:focus {
-    outline: none;
-  } */
 `;
 
 const Tag = ({ tag, index }) => {
