@@ -4,7 +4,7 @@ import data from './data';
 import Group from './components/Group';
 import Tag from './components/Tag';
 import styled from 'styled-components';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 const Container = styled.div`
   /* display: flex; */
@@ -12,8 +12,9 @@ const Container = styled.div`
 
 const App = () => {
   const [groups, setGroups] = useState(data.groups);
+  const [groupOrder, setGroupOrder] = useState(data.groupOrder);
 
-  const handleOnDragEnd = ({ draggableId, source, destination }) => {
+  const handleOnDragEnd = ({ draggableId, source, destination, type }) => {
     if (!destination) {
       return;
     }
@@ -22,21 +23,31 @@ const App = () => {
       return;
     }
 
-    const startGroup = groups[source.droppableId];
-    const finishGroup = groups[destination.droppableId];
+    if (type === 'group') {
+      const newGroupOrder = Array.from(groupOrder);
+      newGroupOrder.splice(source.index, 1);
+      newGroupOrder.splice(destination.index, 0, draggableId);
 
-    startGroup.tagIds.splice(source.index, 1);
-    finishGroup.tagIds.splice(destination.index, 0, draggableId);
+      setGroupOrder(newGroupOrder);
+    }
 
-    setGroups(prevState => ({ ...prevState, [startGroup.id]: startGroup, [finishGroup.id]: finishGroup }));
+    if (type === 'tag') {
+      const startGroup = groups[source.droppableId];
+      const finishGroup = groups[destination.droppableId];
+
+      startGroup.tagIds.splice(source.index, 1);
+      finishGroup.tagIds.splice(destination.index, 0, draggableId);
+
+      setGroups(prevState => ({ ...prevState, [startGroup.id]: startGroup, [finishGroup.id]: finishGroup }));
+    }
   };
 
-  const renderGroups = data.groupOrder.map(groupsId => {
+  const renderGroups = groupOrder.map((groupsId, index) => {
     const group = groups[groupsId];
     const tags = group.tagIds.map(tagIds => data.tags[tagIds]);
 
     return (
-      <Group key={group.id} group={group}>
+      <Group key={group.id} group={group} index={index}>
         {tags.map((tag, index) => (
           <Tag key={tag.id} tag={tag} index={index} />
         ))}
@@ -46,7 +57,14 @@ const App = () => {
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
-      <Container>{renderGroups} </Container>
+      <Droppable droppableId='all-groups' type='group'>
+        {provided => (
+          <Container ref={provided.innerRef} {...provided.droppableProps}>
+            {renderGroups}
+            {provided.placeholder}
+          </Container>
+        )}
+      </Droppable>
     </DragDropContext>
   );
 };
