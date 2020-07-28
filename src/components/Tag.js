@@ -21,7 +21,8 @@ const Tag = ({ tag, index }) => {
             label={tag.name}
             style={{
               backgroundColor: snapshot.isDragging ? '#F3A308' : tag.color,
-              color: 'white'
+              color: 'white',
+              cursor: 'grab'
             }}
           />
         </Container>
